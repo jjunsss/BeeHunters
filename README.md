@@ -50,11 +50,26 @@ sizes and SHA-256 values automatically.
 
 Run the three phases in order on four NVIDIA A100 80 GB GPUs.
 
-```bash
-bash scripts/train.sh 1 0,1,2,3
-bash scripts/train.sh 2 0,1,2,3
-bash scripts/train.sh 3 0,1,2,3
-```
+1. **Phase 1: Raw-keyframe training (12 epochs).** Start from the pretrained
+   Co-DINO checkpoint and train on the combined train and validation keyframes.
+
+   ```bash
+   bash scripts/train.sh 1 0,1,2,3
+   ```
+
+2. **Phase 2: CropBank Mosaic fine-tuning (3 epochs).** Resume Phase 1 and
+   fine-tune on class-aware CropBank Mosaic samples.
+
+   ```bash
+   bash scripts/train.sh 2 0,1,2,3
+   ```
+
+3. **Phase 3: Raw-keyframe cooldown (2 epochs).** Resume Phase 2 and return to
+   the raw train and validation keyframes with a `5e-6` learning rate.
+
+   ```bash
+   bash scripts/train.sh 3 0,1,2,3
+   ```
 
 ## Inference
 
