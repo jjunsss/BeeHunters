@@ -65,6 +65,13 @@ python scripts/infer.py --gpus 0,1,2
 
 The inference-only checkpoint will be linked here after its public release.
 
-This implementation builds on MMDetection and CO-DETR. See
-[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for upstream and dataset
+## Acknowledgements
+
+Thanks to the following open-source projects for making this work possible:
+
+- [MMDetection](https://github.com/open-mmlab/mmdetection)
+- [CO-DETR](https://github.com/Sense-X/Co-DETR)
+- [BuzzSpot DevKit](https://github.com/lereiss/buzzspot-devkit)
+
+See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for license and dataset
 terms.
