@@ -3,7 +3,7 @@
 ![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-b31b1b.svg)
 [![CVPPA@ECCV 2026](https://img.shields.io/badge/CVPPA%40ECCV%202026-1st%20Place-gold.svg)](https://www.codabench.org/competitions/16441/)
 
-Official implementation of **Where Is the Bee? Detecting Tiny Pollinators with
+Official implementation of **Where's the Bee? Detecting Tiny Pollinators with
 a Collaborative-Head Transformer**.
 
 This repository reproduces our 1st-place single-model solution to the BuzzSpot
@@ -41,18 +41,17 @@ bash scripts/prepare_data.sh
 python scripts/build_cropbank.py
 ```
 
-The organizer archives total about 55 GB. See
-[`docs/REPRODUCTION.md`](docs/REPRODUCTION.md) for their expected sizes and
-SHA-256 values.
+The organizer archives total about 55 GB. The download scripts verify their
+sizes and SHA-256 values automatically.
 
 ## Training
 
-Run the three phases in order. The recorded run used NVIDIA A100 80 GB GPUs.
+Run the three phases in order on four NVIDIA A100 80 GB GPUs.
 
 ```bash
 bash scripts/train.sh 1 0,1,2,3
 bash scripts/train.sh 2 0,1,2,3
-bash scripts/train.sh 3 0,1,2
+bash scripts/train.sh 3 0,1,2,3
 ```
 
 ## Inference
@@ -60,7 +59,7 @@ bash scripts/train.sh 3 0,1,2
 Create the FinalTest submission with a single inference pass:
 
 ```bash
-python scripts/infer.py --gpus 0,1,2
+python scripts/infer.py --gpus 0
 ```
 
 The inference-only checkpoint will be linked here after its public release.
@@ -72,6 +71,3 @@ Thanks to the following open-source projects for making this work possible:
 - [MMDetection](https://github.com/open-mmlab/mmdetection)
 - [CO-DETR](https://github.com/Sense-X/Co-DETR)
 - [BuzzSpot DevKit](https://github.com/lereiss/buzzspot-devkit)
-
-See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for license and dataset
-terms.

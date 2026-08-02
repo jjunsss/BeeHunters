@@ -118,7 +118,7 @@ def main() -> int:
         type=Path,
         default=ROOT / "outputs/submissions/buzzspot_final_single_model",
     )
-    parser.add_argument("--gpus", default="0,1,2")
+    parser.add_argument("--gpus", default="0")
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--num-workers", type=int, default=4)
     args = parser.parse_args()

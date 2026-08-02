@@ -19,6 +19,7 @@ fi
 "$VENV/bin/python" -m pip install -r "$ROOT/requirements.txt"
 
 if [[ ! -d "$ROOT/external/mmdetection/.git" ]]; then
+  mkdir -p "$ROOT/external"
   git clone https://github.com/open-mmlab/mmdetection.git \
     "$ROOT/external/mmdetection"
 fi

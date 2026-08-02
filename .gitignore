@@ -29,14 +29,9 @@ __pycache__/
 
 # Datasets and run artifacts
 /data/*
-!/data/README.md
 /checkpoints/*
-!/checkpoints/README.md
-!/checkpoints/manifest.json
 /outputs/*
-!/outputs/README.md
 /external/*
-!/external/README.md
 
 # Separately managed local products
 /legacy/
