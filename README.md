@@ -12,8 +12,10 @@ mAP@[.5:.95] on FinalTest without test-time augmentation or model fusion.
 
 ## Method
 
-BeeHunters uses Co-DINO with a Swin-L backbone and an auxiliary class-weighted
-fixed-simplex ETF loss on matched positive decoder queries. Training follows
+BeeHunters uses [Co-DINO with a Swin-L backbone](https://github.com/open-mmlab/mmdetection/blob/cfd5d3a985b0249de009b67d04f37263e11cdf3d/projects/CO-DETR/configs/codino/co_dino_5scale_swin_l_16xb1_16e_o365tococo.py),
+initialized from the [Objects365-to-COCO checkpoint](https://download.openmmlab.com/mmdetection/v3.0/codetr/co_dino_5scale_swin_large_16e_o365tococo-614254c9.pth), and adds an auxiliary
+class-weighted fixed-simplex ETF loss adapted from [NC-FSCIL](https://openreview.net/forum?id=y5W8tpojhtJ)
+on matched positive decoder queries. Training follows
 three phases:
 
 | Phase | Training source | Epochs | Learning rate |
@@ -33,7 +35,7 @@ source .venv/bin/activate
 bash scripts/download_checkpoints.sh pretrained
 ```
 
-Download and prepare the BuzzSpot data:
+Download and prepare the [BuzzSpot data](https://phenoroam.phenorob.de/geonetwork/srv/eng/catalog.search#/metadata/e5fb8e49-cbdf-4846-af7d-044a92ef7fae):
 
 ```bash
 bash scripts/download_data.sh
