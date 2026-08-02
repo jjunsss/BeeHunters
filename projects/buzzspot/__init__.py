@@ -1,0 +1,1 @@
+"""BuzzSpot model components."""

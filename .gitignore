@@ -1,0 +1,48 @@
+# Local tools and environments
+.agents/
+.codex/
+.claude/
+.claude.json
+.mcp.json
+AGENTS.md
+CLAUDE.md
+.dist_test/
+.pytest_cache/
+.venv*/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.key
+*.pem
+/texput.log
+
+# Model and archive artifacts belong in release storage, not Git history
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.safetensors
+*.zip
+*.tar
+*.tar.gz
+
+# Datasets and run artifacts
+/data/*
+!/data/README.md
+/checkpoints/*
+!/checkpoints/README.md
+!/checkpoints/manifest.json
+/outputs/*
+!/outputs/README.md
+/external/*
+!/external/README.md
+
+# Separately managed local products
+/legacy/
+/technical_report/
+
+# Editor and OS files
+.DS_Store
+._*
+*.swp

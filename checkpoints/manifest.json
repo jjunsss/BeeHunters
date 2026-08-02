@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "artifacts": [
+    {
+      "id": "codino-swin-l-o365-to-coco",
+      "role": "training-initialization",
+      "path": "checkpoints/co_dino_5scale_swin_large_16e_o365tococo.pth",
+      "bytes": 946099183,
+      "sha256": "614254c94b57acbff6a4448f7aa5d6315f8483b115438796e2606ce7a62712fe",
+      "url": "https://download.openmmlab.com/mmdetection/v3.0/codetr/co_dino_5scale_swin_large_16e_o365tococo-614254c9.pth",
+      "download": "bash scripts/download_checkpoints.sh pretrained"
+    },
+    {
+      "id": "buzzspot-codino-etf-final-inference",
+      "role": "final-inference",
+      "path": "checkpoints/buzzspot_codino_etf_final_inference.pth",
+      "bytes": 943564029,
+      "sha256": "12705c0395abc7dd1d6937555e344e63d5f203e65b22d0b4e0d9f96590dfe31f",
+      "url": null,
+      "distribution": "github-release-asset",
+      "url_environment_variable": "FINAL_CHECKPOINT_URL",
+      "download": "FINAL_CHECKPOINT_URL='<released-checkpoint-url>' bash scripts/download_checkpoints.sh final"
+    }
+  ]
+}
