@@ -108,7 +108,7 @@ def main() -> int:
         type=Path,
         default=(
             ROOT
-            / "outputs/train_mmdet/buzzspot_stage3_raw_cooldown_2e/epoch_2.pth"
+            / "checkpoints/buzzspot_codino_etf_final_inference.pth"
         ),
     )
     parser.add_argument("--ref", type=Path, default=DEFAULT_REF)

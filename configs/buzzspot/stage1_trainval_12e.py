@@ -1,4 +1,4 @@
-"""Stage 1: 12 epochs on all raw train and validation keyframes."""
+"""Stage 1: 12 epochs on all original train and validation keyframes."""
 
 _base_ = ['base_codino_etf.py']
 

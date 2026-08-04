@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the exact keyframe-only and raw train+valid COCO files."""
+"""Build the exact keyframe-only and original train+valid COCO files."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Stage 3: two low-LR epochs on the raw train+valid keyframes."""
+"""Stage 3: two low-LR epochs on the original train+valid keyframes."""
 
 _base_ = ['stage1_trainval_12e.py']
 
