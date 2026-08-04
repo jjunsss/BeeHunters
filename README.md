@@ -8,7 +8,7 @@ a Collaborative-Head Transformer**.
 
 This repository reproduces our 1st-place single-model solution to the BuzzSpot
 Challenge at CVPPA@ECCV 2026. The final checkpoint achieved `0.5061609965`
-mAP@[.5:.95] on FinalTest without test-time augmentation or model fusion.
+mAP@[.5:.95] on FinalTest.
 
 ## Method
 
@@ -21,13 +21,12 @@ three phases:
 | Phase | Training source | Epochs | Learning rate |
 |---|---|---:|---:|
 | 1 | Raw train+valid keyframes | 12 | `1e-4` |
-| 2 | Class-aware CropBank Mosaic | 3 | `1e-5` |
+| 2 | Class-aware Mosaic | 3 | `1e-5` |
 | 3 | Raw-keyframe cooldown | 2 | `5e-6` |
 
 ## Setup
 
-The recorded environment uses Python 3.10 and CUDA 11.8. Run all commands from
-the repository root.
+The recorded environment uses Python 3.10 and CUDA 11.8. Run all commands from the repository root.
 
 ```bash
 bash scripts/setup_env.sh
@@ -43,12 +42,11 @@ bash scripts/prepare_data.sh
 python scripts/build_cropbank.py
 ```
 
-The organizer archives total about 55 GB. The download scripts verify their
-sizes and SHA-256 values automatically.
+The organizer archives total about 55 GB. 
 
 ## Training
 
-Run the three phases in order on four NVIDIA A100 80 GB GPUs.
+Run the three phases in order.
 
 1. **Phase 1: Raw-keyframe training (12 epochs).** Start from the pretrained
    Co-DINO checkpoint and train on the combined train and validation keyframes.
@@ -57,15 +55,13 @@ Run the three phases in order on four NVIDIA A100 80 GB GPUs.
    bash scripts/train.sh 1 0,1,2,3
    ```
 
-2. **Phase 2: CropBank Mosaic fine-tuning (3 epochs).** Resume Phase 1 and
-   fine-tune on class-aware CropBank Mosaic samples.
+2. **Phase 2: Mosaic fine-tuning (3 epochs).** Resume Phase 1 and fine-tune on class-aware Mosaic samples.
 
    ```bash
    bash scripts/train.sh 2 0,1,2,3
    ```
 
-3. **Phase 3: Raw-keyframe cooldown (2 epochs).** Resume Phase 2 and return to
-   the raw train and validation keyframes with a `5e-6` learning rate.
+3. **Phase 3: Raw-keyframe cooldown (2 epochs).** Resume Phase 2 and return to the raw train and validation keyframes with a `5e-6` learning rate.
 
    ```bash
    bash scripts/train.sh 3 0,1,2,3
@@ -79,7 +75,7 @@ Create the FinalTest submission with a single inference pass:
 python scripts/infer.py --gpus 0
 ```
 
-The inference-only checkpoint will be linked here after its public release.
+We provide a full trained checkpoint at here. [TBD]
 
 ## Acknowledgements
 
