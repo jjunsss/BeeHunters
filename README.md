@@ -3,7 +3,7 @@
 ![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-b31b1b.svg)
 [![CVPPA@ECCV 2026](https://img.shields.io/badge/CVPPA%40ECCV%202026-1st%20Place-gold.svg)](https://www.codabench.org/competitions/16441/)
 
-Official implementation of **Where's the Bee? Detecting Tiny Pollinators with
+Official implementation of **Where is the Bee? Detecting Tiny Pollinators with
 a Collaborative-Head Transformer**.
 
 This repository reproduces our 1st-place single-model solution to the BuzzSpot
