@@ -16,7 +16,7 @@ python scripts/build_cropbank.py
 ```
 
 The prepared sources contain 6,207 original train+valid keyframes and 5,993
-generated CropBank images.
+generated object-crop images.
 
 ## 2. Training
 
@@ -38,7 +38,7 @@ outputs/train_mmdet/buzzspot_stage3_raw_cooldown_2e/epoch_2.pth
 ```
 
 Runtime provenance of the scored checkpoint differs only in device count: its
-cooldown epoch 1 ran on four A100 80 GB GPUs, training was interrupted, and
+third-stage epoch 1 ran on four A100 80 GB GPUs, training was interrupted, and
 epoch 2 resumed from `epoch_1.pth` on three GPUs. The released inference-only
 checkpoint is the canonical way to reproduce the submitted predictions.
 

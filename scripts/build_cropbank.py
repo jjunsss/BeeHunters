@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the class-aware object CropBank and its train+valid COCO file."""
+"""Build class-aware object crops and their train+valid COCO file."""
 
 from __future__ import annotations
 
@@ -74,7 +74,7 @@ def annotation_weight(annotation: dict[str, Any]) -> float:
 def build_cropbank(output_dir: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     if output_dir.exists() and any(output_dir.iterdir()):
         raise FileExistsError(
-            f"CropBank output must be empty: {output_dir}. Move or clear it explicitly."
+            f"Object-crop output must be empty: {output_dir}. Move or clear it explicitly."
         )
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -186,7 +186,7 @@ def main() -> int:
         cropbank_manifest,
     )
     if (len(cropbank["images"]), len(cropbank["annotations"])) != (5993, 6508):
-        raise ValueError("CropBank counts differ from the final run")
+        raise ValueError("object-crop counts differ from the final run")
 
     merged, merged_manifest = merge_sources(
         [
@@ -195,14 +195,14 @@ def main() -> int:
         ]
     )
     if (merged_manifest["images"], merged_manifest["annotations"]) != (6925, 7624):
-        raise ValueError("merged CropBank counts differ from the final run")
+        raise ValueError("merged object-crop counts differ from the final run")
     write_json(ANN_ROOT / "trainval_keyframes_mosaic_cropbank_only_c256.json", merged)
     write_json(
         ANN_ROOT / "trainval_keyframes_mosaic_cropbank_only_c256_manifest.json",
         merged_manifest,
     )
-    print("CropBank: 5993 images, 6508 annotations")
-    print("CropBank + valid: 6925 images, 7624 annotations")
+    print("Object crops: 5993 images, 6508 annotations")
+    print("Object crops + valid: 6925 images, 7624 annotations")
     return 0
 
 

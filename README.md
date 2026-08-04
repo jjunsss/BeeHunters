@@ -20,9 +20,9 @@ three phases:
 
 | Phase | Training source | Epochs | Learning rate |
 |---|---|---:|---:|
-| 1 | Original train+valid keyframes | 12 | `1e-4` |
-| 2 | Class-aware CropBank Mosaic | 3 | `1e-5` |
-| 3 | Original-keyframe cooldown | 2 | `5e-6` |
+| 1 | Combined train+valid keyframes | 12 | `1e-4` |
+| 2 | Class-aware crop mosaics | 3 | `1e-5` |
+| 3 | Low-rate fine-tuning on original keyframes | 2 | `5e-6` |
 
 ## Setup
 
@@ -47,29 +47,29 @@ python scripts/build_cropbank.py
 
 Run the clean three-phase recipe in order on four NVIDIA A100 80 GB GPUs.
 
-1. **Phase 1: Original-keyframe training (12 epochs).** Start from the pretrained
+1. **Phase 1: Full-data training (12 epochs).** Start from the pretrained
    Co-DINO checkpoint and train on the combined train and validation keyframes.
 
    ```bash
    bash scripts/train.sh 1 0,1,2,3
    ```
 
-2. **Phase 2: CropBank Mosaic fine-tuning (3 epochs).** Resume Phase 1 and
-   fine-tune on class-aware CropBank Mosaic samples.
+2. **Phase 2: Class-aware crop-mosaic fine-tuning (3 epochs).** Resume Phase 1
+   and fine-tune on mosaics assembled from object-centered crops.
 
    ```bash
    bash scripts/train.sh 2 0,1,2,3
    ```
 
-3. **Phase 3: Original-keyframe cooldown (2 epochs).** Resume Phase 2 and
-   return to the original train and validation keyframes with a `5e-6`
+3. **Phase 3: Low-rate fine-tuning on original keyframes (2 epochs).** Resume
+   Phase 2 and fine-tune on the original train and validation keyframes with a `5e-6`
    learning rate.
 
    ```bash
    bash scripts/train.sh 3 0,1,2,3
    ```
 
-The scored checkpoint's final cooldown epoch resumed on three GPUs after an
+The scored checkpoint's final training epoch resumed on three GPUs after an
 interruption. This runtime provenance and the clean replay recipe are separated
 in [docs/REPRODUCTION.md](docs/REPRODUCTION.md).
 

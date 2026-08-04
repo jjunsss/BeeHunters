@@ -1,4 +1,4 @@
-"""Stage 2: three-epoch class-aware CropBank Mosaic fine-tuning."""
+"""Stage 2: three-epoch class-aware crop-mosaic fine-tuning."""
 
 _base_ = ['stage1_trainval_12e.py']
 
