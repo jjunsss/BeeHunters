@@ -42,8 +42,6 @@ bash scripts/prepare_data.sh
 python scripts/build_cropbank.py
 ```
 
-The organizer archives total about 55 GB. 
-
 ## Training
 
 Run the three phases in order.
@@ -69,13 +67,19 @@ Run the three phases in order.
 
 ## Inference
 
-Create the FinalTest submission with a single inference pass:
+Download the released inference checkpoint and create the FinalTest submission
+with a single inference pass across three GPU shards:
 
 ```bash
-python scripts/infer.py --gpus 0
+FINAL_CHECKPOINT_URL='https://github.com/jjunsss/BeeHunters/releases/download/v1.0.0/buzzspot_codino_etf_final_inference.pth' \
+  bash scripts/download_checkpoints.sh final
+python scripts/infer.py \
+  --checkpoint checkpoints/buzzspot_codino_etf_final_inference.pth \
+  --gpus 0,1,2
 ```
 
-We provide a full trained checkpoint at here. [TBD]
+The checkpoint is also available from the
+[v1.0.0 release](https://github.com/jjunsss/BeeHunters/releases/tag/v1.0.0).
 
 ## Acknowledgements
 
