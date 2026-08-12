@@ -1,0 +1,8 @@
+# CUDA-specific torch, torchvision, OpenMIM, and MMCV are installed by
+# scripts/setup_env.sh before this file.
+mmengine==0.10.7
+mmdet==3.2.0
+numpy==1.26.4
+opencv-python==4.11.0.86
+Pillow==12.2.0
+pycocotools==2.0.11
