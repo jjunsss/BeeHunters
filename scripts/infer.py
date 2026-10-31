@@ -14,6 +14,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_CHECKPOINT = ROOT / "checkpoints/buzzspot_codino_etf_final_inference.pth"
 DEFAULT_REF = (
     ROOT
     / "data/extracted/testphase/BuzzSpot_testphase/annotations/"
@@ -96,6 +97,17 @@ def manifest_path(path: Path) -> str:
         return f"<external>/{resolved.name}"
 
 
+def ensure_checkpoint(checkpoint: Path) -> None:
+    if checkpoint.resolve() == DEFAULT_CHECKPOINT.resolve():
+        subprocess.run(
+            ["bash", str(ROOT / "scripts/download_checkpoints.sh"), "final"],
+            cwd=ROOT,
+            check=True,
+        )
+    elif not checkpoint.is_file():
+        raise FileNotFoundError(checkpoint)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -106,10 +118,7 @@ def main() -> int:
     parser.add_argument(
         "--checkpoint",
         type=Path,
-        default=(
-            ROOT
-            / "checkpoints/buzzspot_codino_etf_final_inference.pth"
-        ),
+        default=DEFAULT_CHECKPOINT,
     )
     parser.add_argument("--ref", type=Path, default=DEFAULT_REF)
     parser.add_argument("--image-root", type=Path, default=DEFAULT_IMAGE_ROOT)
@@ -123,7 +132,7 @@ def main() -> int:
     parser.add_argument("--num-workers", type=int, default=4)
     args = parser.parse_args()
 
-    for path in (args.config, args.checkpoint, args.ref, args.image_root):
+    for path in (args.config, args.ref, args.image_root):
         if not path.exists():
             raise FileNotFoundError(path)
     gpus = [value.strip() for value in args.gpus.split(",") if value.strip()]
@@ -134,6 +143,7 @@ def main() -> int:
     allowed_ids = {int(image["id"]) for image in reference["images"]}
     if len(allowed_ids) != 4763:
         raise ValueError(f"expected 4763 FinalTest keyframes, found {len(allowed_ids)}")
+    ensure_checkpoint(args.checkpoint)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     chunk_refs = make_chunks(reference, args.output_dir, len(gpus))
 

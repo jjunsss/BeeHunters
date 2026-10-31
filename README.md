@@ -32,7 +32,6 @@ the repository root.
 ```bash
 bash scripts/setup_env.sh
 source .venv/bin/activate
-bash scripts/download_checkpoints.sh pretrained
 ```
 
 Download and prepare the [BuzzSpot data](https://phenoroam.phenorob.de/geonetwork/srv/eng/catalog.search#/metadata/e5fb8e49-cbdf-4846-af7d-044a92ef7fae):
@@ -40,7 +39,6 @@ Download and prepare the [BuzzSpot data](https://phenoroam.phenorob.de/geonetwor
 ```bash
 bash scripts/download_data.sh
 bash scripts/prepare_data.sh
-python scripts/build_cropbank.py
 ```
 
 ## Training
@@ -51,6 +49,7 @@ Run the clean three-phase recipe in order on four NVIDIA A100 80 GB GPUs.
    Co-DINO checkpoint and train on the combined train and validation keyframes.
 
    ```bash
+   bash scripts/download_checkpoints.sh pretrained
    bash scripts/train.sh 1 0,1,2,3
    ```
 
@@ -58,6 +57,7 @@ Run the clean three-phase recipe in order on four NVIDIA A100 80 GB GPUs.
    and fine-tune on mosaics assembled from object-centered crops.
 
    ```bash
+   python scripts/build_cropbank.py
    bash scripts/train.sh 2 0,1,2,3
    ```
 
@@ -71,12 +71,11 @@ Run the clean three-phase recipe in order on four NVIDIA A100 80 GB GPUs.
 
 ## Inference
 
-Our final checkpoint is published in
-[release v1.0.0](https://github.com/jjunsss/BeeHunters/releases/tag/v1.0.0). :
+The final checkpoint is available in [RLEEASE](https://github.com/jjunsss/BeeHunters/releases/latest)
+and is downloaded automatically when needed.
 
 ```bash
-bash scripts/download_checkpoints.sh final
-python scripts/infer.py --gpus 0,1,2,3
+python scripts/infer.py
 ```
 
 ## Acknowledgements

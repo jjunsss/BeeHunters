@@ -12,7 +12,7 @@ case "$KIND" in
     SHA='614254c94b57acbff6a4448f7aa5d6315f8483b115438796e2606ce7a62712fe'
     ;;
   final)
-    URL="${FINAL_CHECKPOINT_URL:-https://github.com/jjunsss/BeeHunters/releases/download/v1.0.0/buzzspot_codino_etf_final_inference.pth}"
+    URL="${FINAL_CHECKPOINT_URL:-https://github.com/jjunsss/BeeHunters/releases/latest/download/buzzspot_codino_etf_final_inference.pth}"
     OUT="$ROOT/checkpoints/buzzspot_codino_etf_final_inference.pth"
     SHA="${FINAL_CHECKPOINT_SHA256:-12705c0395abc7dd1d6937555e344e63d5f203e65b22d0b4e0d9f96590dfe31f}"
     ;;
