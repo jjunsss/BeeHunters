@@ -1,6 +1,6 @@
 # BeeHunters
 
-![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-b31b1b.svg)
+[![arXiv](https://img.shields.io/badge/arXiv-2608.08580-b31b1b.svg)](https://arxiv.org/abs/2608.08580)
 [![CVPPA@ECCV 2026](https://img.shields.io/badge/CVPPA%40ECCV%202026-1st%20Place-gold.svg)](https://www.codabench.org/competitions/16441/)
 
 Official implementation of **Where Is the Bee? Detecting Tiny Pollinators with
@@ -71,8 +71,7 @@ Run the clean three-phase recipe in order on four NVIDIA A100 80 GB GPUs.
 
 ## Inference
 
-The final checkpoint is available in [RLEEASE](https://github.com/jjunsss/BeeHunters/releases/latest)
-and is downloaded automatically when needed.
+The final checkpoint is available in [RLEEASE](https://github.com/jjunsss/BeeHunters/releases/latest).
 
 ```bash
 python scripts/infer.py
